@@ -12,40 +12,68 @@ app = Flask(__name__)
 def home():
     return render_template("registration.html")
 
-#this is the root to collect the data from users
-@app.route("/submit", methods=["POST"])
+
+
+# app route to collect user data and write into database
+@app.route("/submit", methods=["post"])
 def submit():
-    name = request.form["name"]
-    place = request.form["place"]
-    age = request.form['age']
-    mobile = request.form['mobile']
-    course = request.form['course']
-    email = request.form['email']
-    gender = request.form['gender']
-#hear writing collected data into students.db file
-    con = sqlite3.connect("students.db")
+    full_name = request.form["full_name"]
+    email = request.form["email"]
+    phone = request.form["phone"]
+    gender = request.form["gender"]
+    visual_acuity = request.form["visual_acuity"]
+    city = request.form["city"]
+    state = request.form["state"]
+    country = request.form["country"]
+    computer_access = request.form["computer_access"]
+    english_knowledge = request.form["english_knowledge"]
+    programming_languages = request.form["programming_languages"]
+    source = request.form["source"]
+    agentic_ai = request.form["agentic_ai"]
+    expectations = request.form["expectations"]
+    # writing data into database
+    con = sqlite3.connect("webinar_registration.db")
     cursor = con.cursor()
     cursor.execute("""
         create table if not exists students (
-            id integer primary key,
-            name text not null,
-            place text not null,
-            age integer not null,
-            mobile_number text not null,
-            course text not null,
+            id integer primary key autoincrement,
+            full_name text not null,
             email text not null,
-            gender text not null
+            phone text not null,
+            gender text not null,
+            visual_acuity text not null,
+            city text not null,
+            state text not null,
+            country text not null,
+            computer_access text not null,
+            english_knowledge text not null,
+            programming_languages text not null,
+            source text not null,
+            agentic_ai text not null,
+            expectations text not null
         )
     """)
+    # insert data using lowercase command
     cursor.execute("""
-        insert into students (name, place, age, mobile_number, course, email, gender)
-        values (?, ?, ?, ?, ?, ?, ?)
-    """, (name, place, age, mobile, course, email, gender))
+        insert into students (
+            full_name, email, phone, gender, visual_acuity,
+            city, state, country, computer_access,
+            english_knowledge, programming_languages, source,
+            agentic_ai, expectations
+        )
+        values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (
+        full_name, email, phone, gender, visual_acuity,
+        city, state, country, computer_access,
+        english_knowledge, programming_languages, source,
+        agentic_ai, expectations
+    ))
     con.commit()
     con.close()
-    return f"Thank you for registering {name}, your form is successful!"
+    return f"Thank you for registering, {full_name}! Your response has been recorded successfully."
 
-#rendering verification page
+
+ #rendering verification page
 @app.route("/verification", methods=["get"])
 def verification_form():
     return render_template("admin_verification.html")
@@ -58,7 +86,10 @@ def verification():
     if user_id == user and password == passkey:
         return render_template("chat.html")
     else:
-        return "Wrong credentials! Please provide a valid user ID and password."
+        return """
+        <h2>Wrong credentials! Please provide a valid user ID and password.</h2>
+        <p><a href="/verification">Try again</a></p>"""
+
 
 #run the app
 if __name__ == "__main__":

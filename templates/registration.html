@@ -1,92 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Enrollment Form</title>
+  <meta charset="UTF-8">
+  <title>Webinar Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: lightblue;
+      padding: 20px;
+    }
 
-    <style>
-        body {
-            background-color: lightblue;
-            color: black;
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
+    fieldset {
+      border: 2px solid navy;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      background-color: white;
+    }
 
-        .form-container {
-            max-width: 450px;
-            margin: auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-        }
+    legend {
+      font-weight: bold;
+      font-size: 1.2em;
+      color: navy;
+    }
 
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: darkblue;
-        }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid gray;
+    }
 
-        input, select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 15px;
-            border: 1px solid gray;
-            border-radius: 5px;
-        }
-
-        input[type="submit"] {
-            background-color: navy;
-            color: white;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: blue;
-        }
-    </style>
+    .submit-btn {
+      padding: 10px 20px;
+      background-color: blue;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <div class="form-container">
-        <h2>Student Enrollment Form</h2>
-        <form method="post" action="/submit">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required><br>
 
-            <label for="place">Place</label>
-            <input type="text" id="place" name="place" required><br>
+  <h1>registration for 2-hour Webinar on Agentic AI for visually impaired:</h1>
+<p>Join us for an insightful 2-hour webinar on Agentic AI—a transformative approach where AI agents can operate autonomously to achieve goals, collaborate with other agents, and adapt intelligently.</p>
+  <p>🗓️ Date: 7th September 2025</p>
+  <p>⏰ Time: 6:00 PM IST to 8:00 PM IST</p>
+  <p>🌐 Location: Online (meeting link will be sent by email)</p>
+  <p>📩 Fee: Free (registration required</p>
 
-            <label for="age">Age</label>
-            <input type="number" id="age" name="age" required><br>
+  <p>Please fill out the form below to reserve your spot.</p>
+  <form action="/submit" method="post">
+    <fieldset>
+      <legend>Section 1: Participant Information</legend>
 
-            <label for="mobile">Mobile Number</label>
-            <input type="tel" id="mobile" name="mobile" required><br>
+      <label for="full-name">Full Name *</label>
+      <input type="text" id="full-name" name="full_name" required>
 
-            <label for="course">Course</label>
-            <input type="text" id="course" name="course" required><br>
+      <label for="email">Email Address *</label>
+      <input type="email" id="email" name="email" required>
 
-            <label for="email">Email ID</label>
-            <input type="email" id="email" name="email" required><br>
+      <label for="phone">Phone Number *</label>
+      <input type="tel" id="phone" name="phone" required>
 
-            <label for="gender">Gender</label>
-            <select id="gender" name="gender" required>
-                <option value="">Select</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-            </select><br>
+      <label for="gender">Gender *</label>
+      <select id="gender" name="gender" required>
+        <option value="">-- Select --</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Prefer not to say">Prefer not to say</option>
+        <option value="Other">Other</option>
+      </select>
 
-            <input type="submit" value="Submit">
-        </form>
-    </div>
-<a href="/verification">admin verification</a>
+      <label for="visual-acuity">Visual Acuity *</label>
+      <select id="visual-acuity" name="visual_acuity" required>
+        <option value="">-- Select --</option>
+        <option value="Low Vision">Low Vision</option>
+        <option value="Visually Impaired">Visually Impaired</option>
+      </select>
+
+      <label for="city">City *</label>
+      <input type="text" id="city" name="city" required>
+
+      <label for="state">State *</label>
+      <input type="text" id="state" name="state" required>
+
+      <label for="country">Country *</label>
+      <input type="text" id="country" name="country" required>
+    </fieldset>
+
+    <fieldset>
+      <legend>Section 2: About You</legend>
+
+      <label for="computer-access">Using Computer With *</label>
+      <select id="computer-access" name="computer_access" required>
+        <option value="">-- Select --</option>
+        <option value="Screen Reader">Screen Reader</option>
+        <option value="Magnifier">Magnifier</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label for="english-knowledge">Knowledge of English *</label>
+      <select id="english-knowledge" name="english_knowledge" required>
+        <option value="">-- Select --</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+      <label for="languages">Programming Languages Known *</label>
+      <input type="text" id="languages" name="programming_languages" required>
+
+      <label for="source">How Did You Hear About This Webinar? *</label>
+      <select id="source" name="source" required>
+        <option value="">-- Select --</option>
+        <option value="Email">Email</option>
+        <option value="LinkedIn">LinkedIn</option>
+        <option value="WhatsApp">WhatsApp</option>
+        <option value="Friend">Friend</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label for="agentic-ai">Have You Worked With Agentic AI Before? *</label>
+      <select id="agentic-ai" name="agentic_ai" required>
+        <option value="">-- Select --</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="Maybe">Maybe</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label for="expectations">What Do You Hope to Learn? *</label>
+      <textarea id="expectations" name="expectations" rows="4" required></textarea>
+    </fieldset>
+
+    <button type="submit" class="submit-btn">Submit</button>
+  </form>
+
+  <a href="/verification">Admin verification</a>
 </body>
 </html>
